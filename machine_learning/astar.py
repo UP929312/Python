@@ -5,10 +5,10 @@ A* algorithm is a best-first search algorithm in which the cost
 associated with a node is f(n) = g(n) + h(n),
 where g(n) is the cost of the path from the initial state to node n and
 h(n) is the heuristic estimate or the cost or a path
-from node n to a goal.A* algorithm introduces a heuristic into a
+from node n to a goal. A* algorithm introduces a heuristic into a
 regular graph-searching algorithm,
 essentially planning ahead at each step so a more optimal decision
-is made.A* also known as the algorithm with brains
+is made. A* also known as the algorithm with brains
 """
 import numpy as np
 
@@ -60,11 +60,11 @@ class Gridworld:
     def show(self):
         print(self.w)
 
-    def get_neigbours(self, cell):
+    def get_neighbours(self, cell):
         """
         Return the neighbours of cell
         """
-        neughbour_cord = [
+        neighbour_cord = [
             (-1, -1),
             (-1, 0),
             (-1, 1),
@@ -77,7 +77,7 @@ class Gridworld:
         current_x = cell.position[0]
         current_y = cell.position[1]
         neighbours = []
-        for n in neughbour_cord:
+        for n in neighbour_cord:
             x = current_x + n[0]
             y = current_y + n[1]
             if 0 <= x < self.world_x_limit and 0 <= y < self.world_y_limit:
@@ -90,9 +90,9 @@ class Gridworld:
 
 def astar(world, start, goal):
     """
-    Implementation of a start algorithm
+    Implementation of a star algorithm
     world : Object of the world object
-    start : Object of the cell as  start position
+    start : Object of the cell as start position
     stop  : Object of the cell as goal position
 
     >>> p = Gridworld()
@@ -113,7 +113,7 @@ def astar(world, start, goal):
         _closed.append(_open.pop(min_f))
         if current == goal:
             break
-        for n in world.get_neigbours(current):
+        for n in world.get_neighbours(current):
             for c in _closed:
                 if c == n:
                     continue
